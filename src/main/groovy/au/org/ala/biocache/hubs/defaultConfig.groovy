@@ -32,11 +32,11 @@ auth.admin_role = "ROLE_ADMIN"
 serverName = 'http://dev.ala.org.au:8080'
 
 // skin settings
-organisation.baseUrl = "https://www.ala.org.au"
+organisation.baseUrl = "http://datos.sndb.mincyt.gob.ar"
 skin.layout = "generic"
 skin.fluidLayout = "true"
-skin.orgNameLong = "Generic Portal"
-skin.orgNameShort = "Generic"
+skin.orgNameLong = "SNDB"
+skin.orgNameShort = "SNDB"
 skin.attribution = ""
 skin.useAlaSpatialPortal = false
 skin.useAlaBie = false
