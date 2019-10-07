@@ -10,7 +10,7 @@
     <title><g:layoutTitle /></title>
     <g:render template="/layouts/global"/>
 
-    <asset:javascript src="jquery_migration.js"/>
+    <!--asset:javascript src="jquery_migration.js"/-->
     <asset:javascript src="bootstrap/js/bootstrap.js"/>
     <asset:javascript src="hubCore.js"/>
 

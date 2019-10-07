@@ -1,4 +1,4 @@
-<div id="facetWell" class="well well-sm">
+<div class="panel-group">
     <g:set var="startTime" value="${System.currentTimeMillis()}"/>
     ${alatag.logMsg(msg:"Start of facets.gsp - " + startTime)}
     <h3 class="visible-xs">
@@ -15,10 +15,11 @@
             <g:set var="queryParam" value="${sr.urlParameters.stripIndent(1)}" />
         </g:if>
         <g:if test="${sr.activeFacetMap}">
-            <div id="currentFilter">
+            <div id="currentFilter" class="alert alert-info">
                 <h4><span class="FieldName"><alatag:message code="search.filters.heading" default="Current filters"/></span></h4>
+                <br/>
                 <div class="subnavlist">
-                    <ul id="refinedFacets">
+                    <ul id="refinedFacets text-center">
                         <g:each var="item" in="${sr.activeFacetMap}">
                             <li><alatag:currentFilterItem item="${item}" addCheckBox="${true}"/></li>
                         </g:each>
@@ -35,30 +36,36 @@
         <g:set var="facetMax" value="${10}"/><g:set var="i" value="${1}"/>
         <g:each var="group" in="${groupedFacets}">
             <g:set var="keyCamelCase" value="${group.key.replaceAll(/\s+/,'')}"/>
-            <div class="facetGroupName" id="heading_${keyCamelCase}">
-                <a href="#" class="showHideFacetGroup" data-name="${keyCamelCase}"><span class="caret right-caret"></span> <g:message code="facet.group.${group.key}" default="${group.key}"/></a>
-            </div>
-            <div class="facetsGroup" id="group_${keyCamelCase}" style="display:none;">
-                <g:set var="firstGroup" value="${false}"/>
-                <g:each in="${group.value}" var="facetFromGroup">
-                    <%--  Do a lookup on groupedFacetsMap for the current facet --%>
-                    <g:set var="facetResult" value="${groupedFacetsMap.get(facetFromGroup)}"/>
-                   <%--  Tests for when to display a facet --%>
-                    <g:if test="${facetResult && ! sr.activeFacetMap?.containsKey(facetResult.fieldName ) }">
-                        <g:set var="fieldDisplayName" value="${alatag.formatDynamicFacetName(fieldName:"${facetResult.fieldName}")}"/>
-                        <h4><span class="FieldName">${fieldDisplayName?:facetResult.fieldName}</span></h4>
-                        <div class="subnavlist nano" style="clear:left">
-                            <alatag:facetLinkList facetResult="${facetResult}" queryParam="${queryParam}"/>
-                        </div>
-                        %{--<div class="fadeout"></div>--}%
-                        <g:if test="${facetResult.fieldResult.length() > 1}">
-                            <div class="showHide">
-                                <a href="#multipleFacets" class="multipleFacetsLink" id="multi-${facetResult.fieldName}" role="button" data-toggle="modal" data-target="#multipleFacets" data-displayname="${fieldDisplayName}"
-                                   title="See more options or refine with multiple values"><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> <g:message code="facets.facetfromgroup.link" default="choose more"/>...</a>
+            <div class="panel" id="heading_${keyCamelCase}">
+                <div class="facetGroupName panel-heading">
+                    <h3 class="panel-title">
+                        <a href="#" class="showHideFacetGroup" data-name="${keyCamelCase}"><span class="caret right-caret"></span> <g:message code="facet.group.${group.key}" default="${group.key}"/></a>
+                    </h3>
+                </div>
+                <div class="facetsGroup panel-body" id="group_${keyCamelCase}" style="display:none;">
+                    <g:set var="firstGroup" value="${false}"/>
+                    <g:each in="${group.value}" var="facetFromGroup">
+                        <%--  Do a lookup on groupedFacetsMap for the current facet --%>
+                        <g:set var="facetResult" value="${groupedFacetsMap.get(facetFromGroup)}"/>
+                       <%--  Tests for when to display a facet --%>
+                        <g:if test="${facetResult && ! sr.activeFacetMap?.containsKey(facetResult.fieldName ) }">
+                            <g:set var="fieldDisplayName" value="${alatag.formatDynamicFacetName(fieldName:"${facetResult.fieldName}")}"/>
+                            <h4><span class="FieldName"><i class="fa fa-list"></i> ${fieldDisplayName?:facetResult.fieldName}</span></h4>
+                            <div class="nano subnavlist" style="clear:left; overflow: visible;">
+                                <alatag:facetLinkList facetResult="${facetResult}" queryParam="${queryParam}"/>
                             </div>
+                            %{--<div class="fadeout"></div>--}%
+                            <g:if test="${facetResult.fieldResult.length() > 1}">
+                                <div class="showHide text-right">
+                                    <button type="button" class="btn btn-link btn-sm"><i class="fa fa-plus"></i>
+                                        <a href="#multipleFacets" class="multipleFacetsLink" id="multi-${facetResult.fieldName}" role="button" data-toggle="modal" data-target="#multipleFacets" data-displayname="${fieldDisplayName}"
+                                       title="See more options or refine with multiple values"> <g:message code="facets.facetfromgroup.link" default="choose more"/>...</a>
+                                    </button>
+                                </div>
+                            </g:if>
                         </g:if>
-                    </g:if>
-                </g:each>
+                    </g:each>
+                </div>
             </div>
         </g:each>
         ${alatag.logMsg(msg:"After grouped facets facets.gsp")}

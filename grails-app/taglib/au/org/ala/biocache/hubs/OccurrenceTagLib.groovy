@@ -147,7 +147,8 @@ class OccurrenceTagLib {
 
         if (i18nLabel) {
             // replace with i18n values, if found
-            fqLabel = fqLabel.replaceAll(facetKey, i18nLabel)
+            //fqLabel = fqLabel.replaceAll(facetKey, i18nLabel)
+            fqLabel = i18nLabel + ":" + fqLabel.split(":")[1]
         }
 
         def mb = new MarkupBuilder(out)
@@ -159,9 +160,9 @@ class OccurrenceTagLib {
                     //onClick:"removeFacet(this); return false;"
             ) {
             if (attrs.addCheckBox) {
-                span(class:'fa fa-check-square-o') {
+/*                span(class:'fa fa-check-square-o') {
                     mkp.yieldUnescaped("&nbsp;")
-                }
+                }*/
             }
             if (item.key.contains("occurrence_year")) {
                 fqLabel = fqLabel.replaceAll(':',': ').replaceAll('occurrence_year', alatag.message(code: 'facet.occurrence_year', default:'occurrence_year'))
@@ -222,9 +223,9 @@ class OccurrenceTagLib {
                                     class: "tooltips",
                                     title: linkTitle
                             ) {
-                                span(class: "fa fa-square-o") {
+ /*                               span(class: "fa fa-square-o") {
                                     mkp.yieldUnescaped("&nbsp;")
-                                }
+                                }*/
                                 span(class: "facet-item") {
                                     if(fieldResult.i18nCode){
                                         mkp.yield(alatag.message(code: fieldResult.i18nCode ?: 'unknown', default: fieldResult.label))
@@ -246,9 +247,9 @@ class OccurrenceTagLib {
                                     class: "tooltips",
                                     title: linkTitle
                             ) {
-                                span(class: "fa fa-square-o") {
+                            /*    span(class: "fa fa-square-o") {
                                     mkp.yieldUnescaped("&nbsp;")
-                                }
+                                }*/
                                 span(class: "facet-item") {
                                     mkp.yieldUnescaped("${decade.label}")
                                     addCounts(fieldResult.count)
@@ -269,9 +270,9 @@ class OccurrenceTagLib {
                                     class: "tooltips",
                                     title: linkTitle
                             ) {
-                                span(class: "fa fa-square-o") {
+                      /*          span(class: "fa fa-square-o") {
                                     mkp.yieldUnescaped("&nbsp;")
-                                }
+                                }*/
                                 span(class: "facet-item") {
                                     mkp.yield(label)
                                     addCounts(fieldResult.count)

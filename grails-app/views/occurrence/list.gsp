@@ -101,30 +101,28 @@
 </head>
 
 <body class="occurrence-search-">
-    <div id="listHeader" class="heading-bar row">
-        <div class="col-sm-4 col-md-4">
-            <h1><alatag:message code="search.heading.list" default="Search results"></alatag:message>
-<%--            <a name="resultsTop">&nbsp;</a>--%>
-            </h1>
-        </div>
-
-        <div id="searchBoxZ" class="text-right col-sm-8 col-md-8">
+    <br>
+    <div id="listHeader" class="heading-bar">
+        <div id="searchBoxZ" class="text-right">
             <form action="${g.createLink(controller: 'occurrences', action: 'search')}" id="solrSearchForm" class="form-horizontal">
-                <div id="advancedSearchLink">
-                    <a href="${g.createLink(uri: '/search')}#tab_advanceSearch" class="tooltips" title="<g:message code="list.advancedsearchlink.tooltip" default="Go to advanced search form"></g:message>">
-                        <i class="fa fa-cogs"></i>
-                        <g:message code="list.advancedsearchlink.navigator" default="Advanced search"></g:message>
-                    </a>
-                </div>
-                <div class="input-group pull-right col-sm-10 col-md-10">
+                <div class="input-group">
                     <input type="text" id="taxaQuery" name="${searchQuery}" class="form-control input-xs"
                            value="${params.list(searchQuery).join(' OR ')}"/>
                     <span class="input-group-btn">
-                    	 <button class="btn btn-default btn-sm" type="submit" id="solrSubmit"><i class="fa fa-search text-primary"></i></button>
-<%--                        <input class="form-control btn btn-default" type="submit" id="solrSubmit" value="${g.message(code:"list.advancedsearchlink.button.label", default:"Quick search")}"/>--%>
+                        <button class="btn-primary btn form-submit" type="submit" id="solrSubmit">
+                            <i class="fa fa-search icono-4x text-white"></i>
+                        </button>
+                        <%--                        <input class="form-control btn btn-default" type="submit" id="solrSubmit" value="${g.message(code:"list.advancedsearchlink.button.label", default:"Quick search")}"/>--%>
+                    </span>
+                    <span class="input-group-btn"> <!--id="advancedSearchLink" -->
+                        <a href="${g.createLink(uri: '/search')}#tab_advanceSearch" title="<g:message code="list.advancedsearchlink.tooltip" default="Go to advanced search form"></g:message>">
+                            <button class="btn-primary btn" type="button" style="white-space: nowrap;">
+                                <i class="fa fa-search-plus icono-2x text-white"></i>
+                                <g:message code="list.advancedsearchlink.navigator" default="Advanced search"></g:message>
+                            </button>
+                        </a>
                     </span>
                 </div>
-            </form>
         </div>
         <input type="hidden" id="userId" value="${userId}" class="form-control">
         <input type="hidden" id="userEmail" value="${userEmail}" class="form-control">
@@ -387,8 +385,8 @@
 
                 <div class="tabbable">
                     <ul class="nav nav-tabs" data-tabs="tabs">
-                        <li class="active"><a id="t1" href="#recordsView" data-toggle="tab"><g:message code="list.link.t1"
-                                                                                                       default="Records"/></a>
+                        <li class="active"><a id="t1" href="#recordsView" data-toggle="tab">
+                            <g:message code="list.link.t1" default="Records"/></a>
                         </li>
                         <li><a id="t2" href="#mapView" data-toggle="tab"><g:message code="list.link.t2" default="Map"/></a>
                         </li>
@@ -414,7 +412,7 @@
                     </ul>
                 </div>
 
-                <div class="tab-content clearfix">
+                <div class="tab-content clearfix bg-white">
                     <div class="tab-pane solrResults active" id="recordsView">
                         <div id="searchControls" class="row">
                             <div class="col-sm-4 col-md-4">

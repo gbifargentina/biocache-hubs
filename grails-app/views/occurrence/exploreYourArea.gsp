@@ -64,7 +64,7 @@
     </asset:script>
 </head>
 <body class="nav-locations explore-your-area">
-<div id="header" class="heading-bar">
+%{--<div id="header" class="heading-bar">
     <g:if test="${grailsApplication.config.skin.layout == 'ala'}">
         <div id="breadcrumb">
             <ol class="breadcrumb">
@@ -75,22 +75,23 @@
         </div>
     </g:if>
     <h1><g:message code="eya.header.title" default="Explore Your Area"/></h1>
-</div>
+</div>--}%
+<br>
 <form name="searchForm" id="searchForm" class="" action="" method="GET">
     <input type="hidden" name="latitude" id="latitude" value="${latitude}"/>
     <input type="hidden" name="longitude" id="longitude" value="${longitude}"/>
     <input type="hidden" name="location" id="location" value="${location}"/>
     <div class="control-group">
-        <label class="control-label" for="address"><h4><g:message code="eya.searchform.label01" default="Enter your location or address"/>:</h4></label>
-        <div class="controls row">
-            <div class="col-md-5">
+        <div class="controls">
                 <div class="input-group">
-                    <input type="text" name="address" id="address" class="form-control">
+                    <input type="text" name="address" id="address" class="form-control" placeholder="<g:message code="eya.searchform.label01" default="Enter your location or address"/>">
                     <span class="input-group-btn">
-                        <input id="locationSearch" type="submit" class="btn btn-default" value="<g:message code="eya.searchform.btn01" default="Search"/>"/>
+                        <button id="locationSearch" type="submit" class="btn btn-primary" style="white-space: nowrap;">
+                            <i id="fa fa-globe" class="fa fa-globe text-white" data-clipboard-text="fa-globe"></i>
+                            <g:message code="eya.header.title" default="Explore Your Area"/>
+                        </button>
                     </span>
                 </div><!-- /input-group -->
-            </div><!-- /.col-md-5 -->
             <div class="col-md-7 help-inline"><g:message code="eya.searchform.des01" default="E.g. a street address, place name, postcode or GPS coordinates (as lat, long)"/></div>
         </div><!-- /.row -->
     </div>
